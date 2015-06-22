@@ -10,6 +10,7 @@ struct HealthManager {
     healthKitTypesToWrite.insert(HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex)!)
     healthKitTypesToRead.insert(HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass)!)
     healthKitTypesToRead.insert(HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex)!)
+    healthKitTypesToRead.insert(HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight)!)
     
     if !HKHealthStore.isHealthDataAvailable() {
       let error = NSError(domain: "com.raywenderlich.tutorials.healthkit", code: 2, userInfo: [NSLocalizedDescriptionKey:"HealthKit is not available in this Device"])
@@ -59,4 +60,30 @@ struct HealthManager {
     // 5. Execute the Query
     self.healthKitStore.executeQuery(sampleQuery)
   }
+  
+  func calculateBMIWithWeightInKilograms(weightInKilograms:Double, heightInMeters:Double) -> Double? {
+    if heightInMeters == 0 {
+      return nil;
+    }
+    return (weightInKilograms/(heightInMeters*heightInMeters));
+  }
+  
+  func saveBMISample(bmi:Double, date:NSDate) {
+    
+    // 1. Create a BMI Sample
+    let bmiType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex)
+    let bmiQuantity = HKQuantity(unit: HKUnit.countUnit(), doubleValue: bmi)
+    let bmiSample = HKQuantitySample(type: bmiType!, quantity: bmiQuantity, startDate: date, endDate: date)
+    
+    // 2. Save the sample in the store
+    healthKitStore.saveObject(bmiSample, withCompletion: { (success, error) -> Void in
+      if( error != nil ) {
+        print("Error saving BMI sample: \(error!.localizedDescription)")
+      } else {
+        print("BMI sample saved successfully!")
+      }
+    })
+  }
+
+
 }
