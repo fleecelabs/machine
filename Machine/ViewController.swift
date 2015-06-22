@@ -13,6 +13,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var heightLabel: UILabel!
   @IBOutlet weak var bmiLabel: UILabel!
   @IBOutlet weak var calculatedBmiLabel: UILabel!
+  @IBOutlet weak var idealWeightLabel: UILabel!
   
   
   override func viewDidLoad() {
@@ -67,17 +68,21 @@ class ViewController: UIViewController {
         return;
       }
       
-      var heightLocalizedString = "Fegis!";
+      var heightLocalizedString = "Fegis!"
+      var idealWeight:Double?
       self.height = mostRecentHeight as? HKQuantitySample;
       if let meters = self.height?.quantity.doubleValueForUnit(HKUnit.meterUnit()) {
         let heightFormatter = NSLengthFormatter()
         heightFormatter.forPersonHeightUse = true;
-        heightLocalizedString = heightFormatter.stringFromMeters(meters);
+        heightLocalizedString = heightFormatter.stringFromMeters(meters)
+        idealWeight = 21.75 * meters * meters
       }
       
-      // 4. Update UI in the main thread
       dispatch_async(dispatch_get_main_queue(), { () -> Void in
         self.heightLabel.text = heightLocalizedString
+        if (idealWeight != nil) {
+          self.idealWeightLabel.text = String(format:"%.02f", idealWeight!)
+        }
         self.calculateBMI()
       });
     });

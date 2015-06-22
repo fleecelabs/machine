@@ -66,6 +66,18 @@
                                     <action selector="saveBmiDataPoint" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PDX-l6-RrR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Idealvikt:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPf-Zh-tLU">
+                                <rect key="frame" x="279" y="124" width="69" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Idealvikt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7w-VC-5UR">
+                                <rect key="frame" x="279" y="175" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uträknad BMI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wo-cu-47n">
                                 <rect key="frame" x="46" y="175" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -79,6 +91,7 @@
                         <outlet property="bmiLabel" destination="OhW-2e-ZCN" id="zM5-fN-pGe"/>
                         <outlet property="calculatedBmiLabel" destination="QL8-Fv-C1k" id="78I-3F-DdZ"/>
                         <outlet property="heightLabel" destination="tjA-tk-6tt" id="owy-dS-wAQ"/>
+                        <outlet property="idealWeightLabel" destination="P7w-VC-5UR" id="fL5-9L-clA"/>
                         <outlet property="weightLabel" destination="37y-1G-qbp" id="6jG-hi-B04"/>
                     </connections>
                 </viewController>
